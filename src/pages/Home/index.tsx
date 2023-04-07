@@ -1,32 +1,55 @@
 import { Play } from 'phosphor-react'
 
-import { CountdownContainer, FormContainer, HomeContainer } from './styles'
+import {
+  CountdownContainer,
+  FormContainer,
+  HomeContainer,
+  MinutesAmountInput,
+  Separator,
+  StartCountdownButton,
+  TaskInput,
+} from './styles'
 
 export function Home() {
   return (
     <HomeContainer>
-      <FormContainer>
-        <label htmlFor="task">Vou trabalhar em</label>
-        <input id="task" />
+      <form>
+        <FormContainer>
+          <label htmlFor="task">Vou trabalhar em</label>
+          <TaskInput
+            id="task"
+            list="task-suggestion"
+            placeholder="Dê um nome para seu projeto"
+          />
 
-        <label htmlFor="minutesAmount">durante</label>
-        <input type="number" id="minutesAmount" />
+          <datalist id="task-suggestion"></datalist>
 
-        <span>minutos.</span>
-      </FormContainer>
+          <label htmlFor="minutesAmount">durante</label>
+          <MinutesAmountInput
+            type="number"
+            id="minutesAmount"
+            placeholder="00"
+            step={5}
+            min={5}
+            max={60}
+          />
 
-      <CountdownContainer>
-        <span>0</span>
-        <span>0</span>
-        <span>:</span>
-        <span>0</span>
-        <span>0</span>
-      </CountdownContainer>
+          <span>minutos.</span>
+        </FormContainer>
 
-      <button type="submit">
-        <Play />
-        Começar
-      </button>
+        <CountdownContainer>
+          <span>0</span>
+          <span>0</span>
+          <Separator>:</Separator>
+          <span>0</span>
+          <span>0</span>
+        </CountdownContainer>
+
+        <StartCountdownButton type="submit">
+          <Play />
+          Começar
+        </StartCountdownButton>
+      </form>
     </HomeContainer>
   )
 }
